@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #ffd1dc, #fbc2eb);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* White Card */
+.card {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 380px;
+}
+
+/* Top GIF */
+.sticker {
+    width: 160px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Buttons area */
+.buttons {
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+
+/* Buttons */
+button {
+    border: none;
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.2s ease;
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    left: 40px;
+    top: 30px;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: #eee;
+    color: #333;
+    left: 220px;
+    top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <!-- FIRST PAGE GIF -->
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGdzazRicnIwYWUwbGhoMGUwemd3cnl3bXhmemxsZzVnbDhmYjc0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/jpqwTJ25fA9HzdeS8Z/giphy.gif"
+         class="sticker"
+         alt="Cute Kitty">
+
+    <h1>Amreesh will you be my valentine?</h1>
+
+    <div class="buttons" id="buttonArea">
+        <button id="yesBtn" onclick="acceptLove()">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+
+/* Floating hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+
+/* STRICT no-button movement inside card */
+const noBtn = document.getElementById("noBtn");
+const area = document.getElementById("buttonArea");
+
+function moveButton() {
+    const areaWidth = area.clientWidth;
+    const areaHeight = area.clientHeight;
+
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const maxX = areaWidth - btnWidth;
+    const maxY = areaHeight - btnHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+/* YES CLICK PAGE */
+function acceptLove() {
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(to bottom right,#ff9a9e,#fad0c4);
+        font-family:Arial;
+        text-align:center;
+        color:white;
+    ">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2xmOXZwcjc1YXJod2ltdG80MXZiZ3FiNDdpdncyZXRpNzZ4dXN2biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/byTkG3fBegmk2nEVbX/giphy.gif"
+             style="width:220px;">
+        
+        <h1 style="font-size:28px; margin-top:20px;">
+            Lifetime deal confirmed — no return window 😜❤️
+        </h1>
+    </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
