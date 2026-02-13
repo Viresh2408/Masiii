@@ -1,173 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom right, #ffd1dc, #fbc2eb);
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
 
-/* Floating hearts */
-.heart {
-    position: absolute;
-    animation: float 6s linear infinite;
-}
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --secondary-pink: #ffb3c1;
+            --bg-gradient: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
 
-@keyframes float {
-    0% { transform: translateY(100vh); opacity: 1; }
-    100% { transform: translateY(-10vh); opacity: 0; }
-}
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-gradient);
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+        }
 
-/* White Card */
-.card {
-    background: white;
-    padding: 40px 50px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    width: 380px;
-}
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            animation: float linear;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* Top GIF */
-.sticker {
-    width: 160px;
-    margin-bottom: 15px;
-}
+        @keyframes float {
+            0% {
+                transform: translateY(110vh) scale(0);
+                opacity: 0;
+            }
 
-h1 {
-    font-size: 22px;
-    margin-bottom: 25px;
-    color: #333;
-}
+            20% {
+                opacity: 0.8;
+            }
 
-/* Buttons area */
-.buttons {
-    position: relative;
-    width: 100%;
-    height: 100px;
-}
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
 
-/* Buttons */
-button {
-    border: none;
-    padding: 12px 28px;
-    font-size: 18px;
-    border-radius: 30px;
-    cursor: pointer;
-    position: absolute;
-    transition: 0.2s ease;
-}
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: cardEntrance 1s ease-out;
+        }
 
-#yesBtn {
-    background-color: #ff4d6d;
-    color: white;
-    left: 40px;
-    top: 30px;
-}
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
 
-#yesBtn:hover {
-    transform: scale(1.1);
-}
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
 
-#noBtn {
-    background-color: #eee;
-    color: #333;
-    left: 220px;
-    top: 30px;
-}
-</style>
+        .sticker {
+            width: 180px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 15px rgba(255, 77, 109, 0.3));
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+            font-family: 'Dancing Script', cursive;
+            line-height: 1.4;
+        }
+
+        .buttons {
+            position: relative;
+            width: 100%;
+            height: 120px;
+        }
+
+        button {
+            border: none;
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            position: absolute;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        #yesBtn {
+            background-color: var(--primary-pink);
+            color: white;
+            left: 50%;
+            transform: translateX(-120%);
+            top: 30px;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: translateX(-120%) scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #fff;
+            color: #333;
+            left: 50%;
+            transform: translateX(20%);
+            top: 30px;
+            border: 2px solid #eee;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="card">
-    <!-- FIRST PAGE GIF -->
-    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGdzazRicnIwYWUwbGhoMGUwemd3cnl3bXhmemxsZzVnbDhmYjc0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/jpqwTJ25fA9HzdeS8Z/giphy.gif"
-         class="sticker"
-         alt="Cute Kitty">
+    <div class="card">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGdzazRicnIwYWUwbGhoMGUwemd3cnl3bXhmemxsZzVnbDhmYjc0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/jpqwTJ25fA9HzdeS8Z/giphy.gif"
+            class="sticker" alt="Cute Kitty">
 
-    <h1>Amreesh will you be my valentine?</h1>
+        <h1>will u be my valentine amreesh?</h1>
 
-    <div class="buttons" id="buttonArea">
-        <button id="yesBtn" onclick="acceptLove()">Yes</button>
-        <button id="noBtn">No</button>
+        <div class="buttons">
+            <button id="yesBtn" onclick="acceptLove()">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
     </div>
-</div>
 
-<script>
+    <script>
 
-/* Floating hearts */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHeart, 500);
+        /* Floating hearts using SVG (NO emoji issues) */
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
 
-/* STRICT no-button movement inside card */
-const noBtn = document.getElementById("noBtn");
-const area = document.getElementById("buttonArea");
+            const colors = ["#ff4d6d", "#ff758f", "#ff8fa3", "#ffb3c1"];
+            const color = colors[Math.floor(Math.random() * colors.length)];
 
-function moveButton() {
-    const areaWidth = area.clientWidth;
-    const areaHeight = area.clientHeight;
+            heart.innerHTML = `
+    <svg viewBox="0 0 32 29.6" width="24" height="24">
+        <path fill="${color}" 
+        d="M23.6,0c-3.4,0-6.3,2.3-7.6,4.6C14.7,2.3,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4
+        c0,9.5,16,21.2,16,21.2s16-11.7,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+    </svg>
+    `;
 
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 4 + "s";
 
-    const maxX = areaWidth - btnWidth;
-    const maxY = areaHeight - btnHeight;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
 
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
+        setInterval(createHeart, 300);
 
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-}
+        /* Playful No-button movement */
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        let noClickCount = 0;
 
-noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("click", moveButton);
+        const noTexts = [
+            "No", "Are you sure?", "Think again!", "Last chance!",
+            "Surely not?", "You're heartless!", "Give it a thought!",
+            "I'm gonna cry...", "You're breaking my heart :("
+        ];
 
-/* YES CLICK PAGE */
-function acceptLove() {
-    document.body.innerHTML = `
+        function moveButton() {
+            // After "You're heartless!" (index 5), hide the button
+            if (noClickCount >= 5) {
+                noBtn.style.display = 'none';
+                return;
+            }
+
+            const buttonsDiv = document.querySelector('.buttons');
+            const buttonsDivWidth = buttonsDiv.clientWidth;
+            const buttonsDivHeight = buttonsDiv.clientHeight;
+
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            const maxX = buttonsDivWidth - btnWidth;
+            const maxY = buttonsDivHeight - btnHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+            const currentScale = 1 + (noClickCount * 0.1);
+            yesBtn.style.transform = `translateX(-120%) scale(${currentScale})`;
+
+            noBtn.innerText = noTexts[Math.min(noClickCount, noTexts.length - 1)];
+            noClickCount++;
+        }
+
+        noBtn.addEventListener("mouseenter", moveButton);
+        noBtn.addEventListener("click", moveButton);
+
+        /* YES CLICK PAGE */
+        function acceptLove() {
+            document.body.innerHTML = `
     <div style="
         height:100vh;
         display:flex;
         flex-direction:column;
         justify-content:center;
         align-items:center;
-        background:linear-gradient(to bottom right,#ff9a9e,#fad0c4);
-        font-family:Arial;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        font-family: 'Outfit', sans-serif;
         text-align:center;
-        color:white;
+        color: #333;
     ">
         <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2xmOXZwcjc1YXJod2ltdG80MXZiZ3FiNDdpdncyZXRpNzZ4dXN2biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/byTkG3fBegmk2nEVbX/giphy.gif"
-             style="width:220px;">
+             style="width:280px;">
         
-        <h1 style="font-size:28px; margin-top:20px;">
-            Lifetime deal confirmed — no return window 😜❤️
+        <h1 style="font-size:42px; margin-top:30px; color:#ff4d6d; font-family:'Dancing Script', cursive;">
+            Yay! Best choice ever!
         </h1>
+        <p style="font-size:22px; font-weight:300;">
+            Lifetime deal confirmed 😜<br>
+            <strong>Valentine accepted!</strong>
+        </p>
     </div>
     `;
-}
+        }
 
-</script>
-
+    </script>
 </body>
+
 </html>
